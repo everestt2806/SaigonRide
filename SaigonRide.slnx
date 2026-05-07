@@ -1,1 +1,6 @@
-<Solution />
+<Solution>
+  <Project Path="src/SaigonRide.Data/SaigonRide.Data.csproj" Id="7eb0e359-d132-4b30-8180-1b3e4f7e9770" />
+  <Project Path="src/SaigonRide.Domain/SaigonRide.Domain.csproj" Id="86ed90b9-696f-4145-b6d6-3fc5f08da9a1" />
+  <Project Path="src/SaigonRide.Services/SaigonRide.Services.csproj" Id="0f6cffa8-faca-4976-b19b-712f1c09ff49" />
+  <Project Path="src/SaigonRide.Web/SaigonRide.Web.csproj" Id="e0a7c191-eaed-4830-a7f8-58b6896c2c32" />
+</Solution>
