@@ -1,0 +1,52 @@
+## .NET
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+## VS / Rider
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+## Logs
+logs/
+*.log
+
+## Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+.coverage
+*.coverlet.json
+
+## Local DB
+*.mdf
+*.ldf
+*.ndf
+
+## OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+## Selenium screenshots
+tests/screenshots/
+*.har
+
+## Tooling caches
+.config/
+artifacts/
