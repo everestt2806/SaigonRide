@@ -1,0 +1,45 @@
+@model ReceiptViewModel
+@{ ViewData["Title"] = "Receipt"; }
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+        <div class="card border-success">
+            <div class="card-header bg-success text-white">Payment successful</div>
+            <div class="card-body">
+                <h1 class="h4 mb-3">Receipt #@Model.Rental.Id</h1>
+                <dl class="row">
+                    <dt class="col-sm-4">User</dt>
+                    <dd class="col-sm-8">
+                        @Model.Rental.User?.FullName
+                        @if (!string.IsNullOrEmpty(Model.MaskedPassport))
+                        {
+                            <span class="badge bg-secondary ms-2">Passport @Model.MaskedPassport</span>
+                        }
+                    </dd>
+                    <dt class="col-sm-4">Vehicle</dt>
+                    <dd class="col-sm-8">@Model.Rental.Vehicle?.LicensePlate · @Model.Rental.Vehicle?.Category?.Name</dd>
+                    <dt class="col-sm-4">Pickup → Return</dt>
+                    <dd class="col-sm-8">@Model.Rental.PickupStation?.Name → @Model.Rental.ReturnStation?.Name</dd>
+                    <dt class="col-sm-4">Duration</dt>
+                    <dd class="col-sm-8">@Model.Fare.DurationMinutes minute(s)</dd>
+                    <dt class="col-sm-4">Started / Ended</dt>
+                    <dd class="col-sm-8">@Model.Rental.StartTime.ToLocalTime():g — @Model.Rental.EndTime?.ToLocalTime():g</dd>
+                </dl>
+
+                <table class="table mt-3">
+                    <tr><td>Base fare</td><td class="text-end">@Model.Fare.BaseFare.ToString("N0") ₫</td></tr>
+                    @if (Model.Fare.Discount > 0)
+                    {
+                        <tr class="text-success"><td>15% rebalancing discount</td><td class="text-end">−@Model.Fare.Discount.ToString("N0") ₫</td></tr>
+                    }
+                    <tr class="fw-bold border-top"><td>Total paid</td><td class="text-end">@Model.Transaction.Amount.ToString("N0") ₫</td></tr>
+                    <tr><td>Method</td><td class="text-end">@Model.Transaction.PaymentMethod</td></tr>
+                    <tr><td>Gateway reference</td><td class="text-end small text-muted">@Model.Transaction.GatewayRef</td></tr>
+                </table>
+
+                <a asp-action="History" class="btn btn-outline-secondary mt-3">View history</a>
+                <a asp-controller="Station" asp-action="Index" class="btn btn-primary mt-3">Ride again</a>
+            </div>
+        </div>
+    </div>
+</div>

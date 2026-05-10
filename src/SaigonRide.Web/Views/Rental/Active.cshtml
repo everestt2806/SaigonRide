@@ -1,0 +1,51 @@
+@model ActiveRentalViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
+@{ ViewData["Title"] = L["ActiveRental"]; }
+
+<h1 class="h3 mb-3">@L["ActiveRental"]</h1>
+
+<div class="card fare-card mb-3" data-rental-start-utc="@DateTime.SpecifyKind(Model.Rental.StartTime, DateTimeKind.Utc).ToString("o")" data-rate-per-min="@Model.Rental.RatePerMinSnapshot">
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-6">
+                <p class="text-muted mb-1 small">@L["Vehicle"]</p>
+                <h2 class="h5">@Model.Rental.Vehicle?.LicensePlate <span class="text-muted small">@Model.Rental.Vehicle?.Category?.Name</span></h2>
+                <p class="text-muted mb-1 small">@L["Pickup"]</p>
+                <p class="mb-2">@Model.Rental.PickupStation?.Name</p>
+                <p class="text-muted mb-1 small">@L["StartedAt"]</p>
+                <p class="mb-0">@Model.Rental.StartTime.ToLocalTime():g</p>
+            </div>
+            <div class="col-12 col-md-6 text-md-end">
+                <p class="text-muted mb-1 small">@L["LiveDuration"]</p>
+                <p class="live-timer mb-2"><span data-timer>00:00</span></p>
+                <p class="text-muted mb-1 small">@L["EstimatedFare"]</p>
+                <p class="h4 text-warning"><span data-estimated-fare>—</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form asp-action="Cancel" method="post" class="mb-3" onsubmit="return confirm('@L["CancelRental"]?');">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="rentalId" value="@Model.Rental.Id" />
+    <button type="submit" class="btn btn-outline-danger">@L["CancelRental"]</button>
+</form>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5 mb-3">@L["EndRental"]</h2>
+        <form asp-action="PreviewFare" method="post" class="row g-3">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="rentalId" value="@Model.Rental.Id" />
+            <div class="col-12 col-md-8">
+                <label class="form-label">@L["ReturnStation"]</label>
+                <select name="returnStationId" class="form-select" asp-items="Model.ReturnStationOptions" required>
+                    <option value="">@L["SelectStation"]</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 d-grid align-self-end">
+                <button type="submit" class="btn btn-primary">@L["PreviewFare"]</button>
+            </div>
+        </form>
+    </div>
+</div>

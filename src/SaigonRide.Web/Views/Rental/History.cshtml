@@ -1,0 +1,63 @@
+@model List<Rental>
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
+@{ ViewData["Title"] = L["RentalHistory"]; }
+
+<h1 class="h3 mb-3">@L["RentalHistory"]</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>@L["Vehicle"]</th>
+                <th>Trip</th>
+                <th>@L["StartedAt"]</th>
+                <th>Duration</th>
+                <th>Fare</th>
+                <th>@L["Status"]</th>
+                <th class="text-end">@L["ReceiptTitle"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.Id</td>
+                    <td>@r.Vehicle?.LicensePlate <span class="small text-muted d-block">@r.Vehicle?.Category?.Name</span></td>
+                    <td>
+                        @r.PickupStation?.Name
+                        @if (r.ReturnStation is not null) { <text> → @r.ReturnStation.Name</text> }
+                    </td>
+                    <td class="small">@r.StartTime.ToLocalTime():g</td>
+                    <td>@(r.DurationMinutes?.ToString() ?? "—") min</td>
+                    <td>
+                        @if (r.TotalFare.HasValue)
+                        {
+                            <span>@r.TotalFare.Value.ToString("N0") ₫</span>
+                            @if ((r.Discount ?? 0) > 0) { <span class="badge bg-success ms-1">-15%</span> }
+                        }
+                        else
+                        {
+                            <span>—</span>
+                        }
+                    </td>
+                    <td><span class="badge bg-secondary">@r.Status</span></td>
+                    <td class="text-end">
+                        @if (r.Transaction is not null)
+                        {
+                            <a asp-action="Receipt" asp-route-id="@r.Id" class="btn btn-link btn-sm">View</a>
+                        }
+                    </td>
+                </tr>
+            }
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="8" class="p-0">
+                        <partial name="_EmptyState" model='("bi-bicycle", "No rentals yet", "Pick up your first ride today!")' />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
