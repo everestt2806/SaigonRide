@@ -1,0 +1,22 @@
+@{ ViewData["Title"] = "Register"; }
+<h1 class="h4 mb-3">Choose your account type</h1>
+<div class="row g-3">
+    <div class="col-12 col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5">🇻🇳 Local Commuter</h2>
+                <p class="text-muted small">For Vietnamese residents. Pay with MoMo, VNPay, or cash. National ID required.</p>
+                <a asp-action="RegisterLocal" class="btn btn-primary">Register as Local</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5">🌍 Foreign Tourist</h2>
+                <p class="text-muted small">For visitors. Pay with PayPal, Apple Pay, or cash. Passport stored AES-256 encrypted.</p>
+                <a asp-action="RegisterTourist" class="btn btn-primary">Register as Tourist</a>
+            </div>
+        </div>
+    </div>
+</div>

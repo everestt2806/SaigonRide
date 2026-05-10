@@ -1,0 +1,52 @@
+@model LoginViewModel
+@{ ViewData["Title"] = "Login"; }
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-3">Login</h1>
+                <form asp-action="Login" method="post" novalidate>
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none-if-empty"></div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" autocomplete="email" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" autocomplete="current-password" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                </form>
+                <hr />
+                <p class="text-muted small mb-1">No account yet?</p>
+                <div class="d-flex gap-2">
+                    <a asp-action="RegisterLocal" class="btn btn-outline-secondary btn-sm">Register Local</a>
+                    <a asp-action="RegisterTourist" class="btn btn-outline-secondary btn-sm">Register Tourist</a>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-3 small">
+            <div class="card-body">
+                <p class="mb-1 text-muted">Demo accounts (password = role + <code>@@123</code>)</p>
+                <ul class="mb-0">
+                    <li><code>admin@@saigonride.local</code> / <code>Admin@@123</code></li>
+                    <li><code>local@@saigonride.local</code> / <code>Local@@123</code></li>
+                    <li><code>tourist@@saigonride.local</code> / <code>Tourist@@123</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

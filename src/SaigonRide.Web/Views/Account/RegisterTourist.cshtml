@@ -1,0 +1,49 @@
+@model RegisterTouristViewModel
+@{ ViewData["Title"] = "Register — Foreign Tourist"; }
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-7">
+        <h1 class="h4 mb-3">Register — Foreign Tourist</h1>
+        <p class="small text-muted">Your passport will be stored encrypted with AES-256 (NFR-03).</p>
+        <form asp-action="RegisterTourist" method="post" novalidate>
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none-if-empty"></div>
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" autocomplete="email" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label asp-for="FullName" class="form-label"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label asp-for="PassportNumber" class="form-label"></label>
+                    <input asp-for="PassportNumber" class="form-control" />
+                    <span asp-validation-for="PassportNumber" class="text-danger small"></span>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label asp-for="Nationality" class="form-label"></label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger small"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Create account</button>
+            <a asp-action="Login" class="btn btn-link mt-3">Already have one?</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

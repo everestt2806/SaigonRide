@@ -1,0 +1,92 @@
+@model SaigonRide.Web.Models.ProfileViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
+@{
+    ViewData["Title"] = L["Profile"];
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4">@L["Profile"]</h3>
+
+                <form asp-action="Profile" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <h5 class="mb-3 text-secondary">Thông tin cơ bản / Basic Info</h5>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-medium"></label>
+                        <input asp-for="Email" class="form-control text-muted bg-light" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label fw-medium"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserType" class="form-label fw-medium"></label>
+                        <input value="@Model.UserType" class="form-control text-muted bg-light" readonly />
+                        <input type="hidden" asp-for="UserType" />
+                    </div>
+
+                    @if (Model.UserType == SaigonRide.Domain.Enums.UserType.LocalCommuter)
+                    {
+                        <div class="mb-3">
+                            <label asp-for="NationalId" class="form-label fw-medium"></label>
+                            <input asp-for="NationalId" class="form-control text-muted bg-light" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-medium"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                        </div>
+                    }
+                    else if (Model.UserType == SaigonRide.Domain.Enums.UserType.ForeignTourist)
+                    {
+                        <div class="mb-3">
+                            <label asp-for="PassportNumber" class="form-label fw-medium"></label>
+                            <input asp-for="PassportNumber" class="form-control text-muted bg-light" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Nationality" class="form-label fw-medium"></label>
+                            <input asp-for="Nationality" class="form-control text-muted bg-light" readonly />
+                        </div>
+                    }
+
+                    <hr class="my-4" />
+                    <h5 class="mb-3 text-secondary">Đổi mật khẩu / Change Password</h5>
+                    <p class="small text-muted mb-3">Để trống nếu không muốn đổi / Leave blank to keep current password</p>
+
+                    <div class="mb-3">
+                        <label asp-for="CurrentPassword" class="form-label fw-medium"></label>
+                        <input asp-for="CurrentPassword" class="form-control" />
+                        <span asp-validation-for="CurrentPassword" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="NewPassword" class="form-label fw-medium"></label>
+                        <input asp-for="NewPassword" class="form-control" />
+                        <span asp-validation-for="NewPassword" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ConfirmNewPassword" class="form-label fw-medium"></label>
+                        <input asp-for="ConfirmNewPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmNewPassword" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2">
+                        <i class="bi bi-save me-2"></i>Lưu thay đổi / Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
