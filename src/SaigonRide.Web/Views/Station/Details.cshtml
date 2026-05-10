@@ -1,0 +1,43 @@
+@model Station
+@{
+    ViewData["Title"] = Model.Name;
+    var vehicles = ViewBag.Vehicles as List<Vehicle> ?? new List<Vehicle>();
+}
+
+<a asp-action="Index" class="btn btn-link p-0 mb-2">← Back to stations</a>
+<div class="d-flex justify-content-between flex-wrap mb-3">
+    <div>
+        <h1 class="h4 mb-1">@Model.Name</h1>
+        <p class="text-muted mb-0">@Model.Address · Capacity @Model.Capacity · Currently @Model.CurrentCount vehicles (@Math.Round(Model.OccupancyPct, 1)%)</p>
+    </div>
+    <span class="badge fs-6 align-self-start station-status-@Model.Status">@Model.Status</span>
+</div>
+
+@if (Model.Status == StationStatus.LowInventory)
+{
+    <div class="discount-banner mb-3">⚡ Return any vehicle here and get a 15% rebalancing discount!</div>
+}
+
+<h2 class="h5 mb-2">Available vehicles (@vehicles.Count)</h2>
+<div class="row g-3">
+    @foreach (var v in vehicles)
+    {
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h6 mb-1">@v.LicensePlate</h3>
+                    <p class="text-muted small mb-2">@v.Category?.Name · @v.Category?.RatePerMinVnd.ToString("N0") ₫/min</p>
+                    <form asp-controller="Rental" asp-action="Start" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="vehicleId" value="@v.Id" />
+                        <button type="submit" class="btn btn-warning w-100">Rent now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    @if (!vehicles.Any())
+    {
+        <div class="col-12"><div class="alert alert-info mb-0">No vehicles are available right now. Check another station.</div></div>
+    }
+</div>

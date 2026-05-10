@@ -1,0 +1,36 @@
+@model List<Station>
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
+@{ ViewData["Title"] = L["NavStations"]; }
+
+<h1 class="h3 mb-3">@L["NavStations"]</h1>
+<p class="text-muted">@L["StationsSubtitle"]</p>
+
+<div class="row g-3">
+    @foreach (var s in Model)
+    {
+        var statusClass = s.Status switch
+        {
+            StationStatus.LowInventory => "sr-badge-low",
+            StationStatus.Full => "sr-badge-full",
+            _ => "sr-badge-normal"
+        };
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 report-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h2 class="h5 mb-1">@s.Name</h2>
+                        <span class="sr-badge @statusClass">@s.Status</span>
+                    </div>
+                    <p class="text-muted small mb-2">@s.Address</p>
+                    <div class="progress mb-2" role="progressbar" aria-valuenow="@((int)s.OccupancyPct)" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: @((int)s.OccupancyPct)%"></div>
+                    </div>
+                    <div class="d-flex justify-content-between small">
+                        <span>@s.CurrentCount / @s.Capacity @L["Vehicles"]</span>
+                        <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-link btn-sm p-0">@L["View"]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

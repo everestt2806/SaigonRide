@@ -1,32 +1,46 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SaigonRide.Domain.Enums;
+using SaigonRide.Services.Inventory;
 using SaigonRide.Web.Models;
-using System.Diagnostics;
 
-namespace SaigonRide.Web.Controllers
+namespace SaigonRide.Web.Controllers;
+
+[AllowAnonymous]
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly IStationService _stationService;
+    private readonly IVehicleCategoryService _categoryService;
+    private readonly IVehicleService _vehicleService;
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(
+        IStationService stationService,
+        IVehicleCategoryService categoryService,
+        IVehicleService vehicleService,
+        ILogger<HomeController> logger)
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        _stationService = stationService;
+        _categoryService = categoryService;
+        _vehicleService = vehicleService;
+        _logger = logger;
     }
+
+    public async Task<IActionResult> Index()
+    {
+        var stations = await _stationService.ListActiveAsync();
+        var categories = await _categoryService.ListAsync();
+        var vehicleCount = await _vehicleService.CountAvailableAsync();
+
+        var vm = new HomeViewModel
+        {
+            ActiveStationCount = stations.Count,
+            AvailableVehicleCount = vehicleCount,
+            Categories = categories,
+            TopStations = stations.OrderByDescending(s => s.CurrentCount).Take(5).ToList()
+        };
+        return View(vm);
+    }
+
+    public IActionResult About() => View();
 }

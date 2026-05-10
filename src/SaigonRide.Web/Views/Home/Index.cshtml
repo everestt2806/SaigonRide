@@ -1,8 +1,87 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+@model SaigonRide.Web.Models.HomeViewModel
+@{ ViewData["Title"] = "Home"; ViewData["FullWidth"] = true; }
+@inject SaigonRide.Web.Infrastructure.ICurrentUser CurrentUser
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="sr-hero">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-12 col-lg-6">
+        <span class="badge bg-success-subtle text-success-emphasis mb-3 rounded-pill px-3 py-2">
+          <i class="bi bi-leaf me-1"></i> @L["HomeHeroDiscount"]
+        </span>
+        <h1 class="display-3 mb-4">@L["HomeHeroTitle1"] <span class="text-primary">@L["HomeHeroTitle2"]</span> @L["HomeHeroTitle3"]</h1>
+        <p class="lead text-secondary mb-4">@L["HomeSubtitle"]</p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a asp-controller="Station" asp-action="Index" class="btn btn-primary btn-lg"><i class="bi bi-bicycle me-2"></i>@L["HomeStartRide"]</a>
+          @if (!CurrentUser.IsAuthenticated)
+          {
+            <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary btn-lg">@L["CreateAccount"]</a>
+          }
+        </div>
+        <div class="d-flex gap-4 mt-4">
+          <div><div class="sr-stat__num">@Model.ActiveStationCount</div><small class="text-secondary">@L["HomeActiveStations"]</small></div>
+          <div><div class="sr-stat__num">@Model.AvailableVehicleCount</div><small class="text-secondary">@L["HomeVehicles"]</small></div>
+          <div><div class="sr-stat__num">4.8★</div><small class="text-secondary">@L["HomeReviews"]</small></div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="sr-hero-card">
+          <h6 class="text-uppercase text-secondary mb-3" style="font-size:12px;letter-spacing:0.08em">@L["HomeQuickBook"]</h6>
+          <label class="form-label small fw-medium">@L["HomePickupStation"]</label>
+          <select class="form-select mb-3">
+            @foreach (var s in Model.TopStations)
+            {
+              <option value="@s.Id">@s.Name — @s.CurrentCount @L["HomeVehiclesAvailable"]</option>
+            }
+          </select>
+          <label class="form-label small fw-medium">@L["HomeVehicleType"]</label>
+          <div class="row g-2 mb-3">
+            @{ var icons = new[] { "bi-bicycle", "bi-lightning-charge", "bi-scooter", "bi-truck", "bi-car-front" }; var idx = 0; }
+            @foreach (var cat in Model.Categories.Take(3))
+            {
+              var icon = idx < icons.Length ? icons[idx] : "bi-bicycle";
+              var isMiddle = idx == 1;
+              <div class="col-4">
+                <div class="border rounded-3 p-3 text-center @(isMiddle ? "border-primary bg-primary-subtle" : "")">
+                  <i class="bi @icon fs-3 text-primary"></i>
+                  <div class="small mt-1">@cat.Name</div>
+                  <div class="small text-secondary">@cat.RatePerMinVnd.ToString("N0") ₫</div>
+                </div>
+              </div>
+              idx++;
+            }
+          </div>
+          <a asp-controller="Station" asp-action="Index" class="btn btn-primary w-100 btn-lg">@L["HomeFindVehicle"] <i class="bi bi-arrow-right ms-2"></i></a>
+          <p class="text-center small text-secondary mt-3 mb-0">@L["HomeFreeRegister"]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-5 mb-3">@L["HomeStepTitle"]</h2>
+      <p class="text-secondary">@L["HomeStepDesc"]</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-md-4 text-center">
+        <div class="sr-feature-icon mx-auto"><i class="bi bi-1-circle-fill"></i></div>
+        <h5>@L["HomeStep1Title"]</h5>
+        <p class="text-secondary">@L["HomeStep1Desc"]</p>
+      </div>
+      <div class="col-12 col-md-4 text-center">
+        <div class="sr-feature-icon mx-auto"><i class="bi bi-2-circle-fill"></i></div>
+        <h5>@L["HomeStep2Title"]</h5>
+        <p class="text-secondary">@L["HomeStep2Desc"]</p>
+      </div>
+      <div class="col-12 col-md-4 text-center">
+        <div class="sr-feature-icon mx-auto"><i class="bi bi-3-circle-fill"></i></div>
+        <h5>@L["HomeStep3Title"]</h5>
+        <p class="text-secondary">@L["HomeStep3Desc"]</p>
+      </div>
+    </div>
+  </div>
+</section>
