@@ -1,0 +1,39 @@
+@model VehicleEditViewModel
+
+<form method="post" novalidate class="card card-body">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="RowVersion" />
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none-if-empty"></div>
+
+    <div class="row g-3">
+        <div class="col-12 col-md-6">
+            <label asp-for="LicensePlate" class="form-label"></label>
+            <input asp-for="LicensePlate" class="form-control" placeholder="51H1-12345" />
+            <span asp-validation-for="LicensePlate" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-md-6">
+            <label asp-for="Status" class="form-label"></label>
+            <select asp-for="Status" class="form-select" asp-items="Model.StatusOptions"></select>
+        </div>
+        <div class="col-12 col-md-6">
+            <label asp-for="VehicleCategoryId" class="form-label"></label>
+            <select asp-for="VehicleCategoryId" class="form-select" asp-items="Model.CategoryOptions">
+                <option value="">— Select category —</option>
+            </select>
+            <span asp-validation-for="VehicleCategoryId" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-md-6">
+            <label asp-for="HomeStationId" class="form-label"></label>
+            <select asp-for="HomeStationId" class="form-select" asp-items="Model.StationOptions">
+                <option value="">— Select station —</option>
+            </select>
+            <span asp-validation-for="HomeStationId" class="text-danger small"></span>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2 mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+</form>

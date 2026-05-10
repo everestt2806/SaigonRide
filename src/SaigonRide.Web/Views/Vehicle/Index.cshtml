@@ -1,0 +1,96 @@
+@model VehicleListViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SaigonRide.Web.SharedResource> L
+@{ 
+    ViewData["Title"] = L["VehicleManagement"]; 
+    string GetStatusClass(VehicleStatus status) => status switch {
+        VehicleStatus.Available => "sr-badge-available",
+        VehicleStatus.InTransit => "sr-badge-in-transit",
+        VehicleStatus.Maintenance => "sr-badge-maintenance",
+        _ => "sr-badge-decommissioned"
+    };
+}
+<div class="d-flex justify-content-between flex-wrap align-items-center mb-3">
+    <h1 class="h3 mb-0">@L["VehicleManagement"]</h1>
+    <div class="d-flex gap-2">
+        <a asp-controller="VehicleCategory" asp-action="Index" class="btn btn-outline-secondary btn-sm">@L["NavManageCategories"]</a>
+        <a asp-action="Create" class="btn btn-primary">+ Add Vehicle</a>
+    </div>
+</div>
+
+<form method="get" class="card card-body mb-3">
+    <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-4">
+            <label class="form-label">@L["SearchPlate"]</label>
+            <input name="search" value="@Model.Search" class="form-control" placeholder="51H1-1234" />
+        </div>
+        <div class="col-6 col-md-3">
+            <label class="form-label">@L["Status"]</label>
+            <select name="status" class="form-select" asp-items="Model.StatusOptions">
+                <option value="">@L["Any"]</option>
+            </select>
+        </div>
+        <div class="col-6 col-md-3">
+            <label class="form-label">@L["Station"]</label>
+            <select name="stationId" class="form-select" asp-items="Model.StationOptions">
+                <option value="">@L["Any"]</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-2 d-grid">
+            <button type="submit" class="btn btn-outline-primary">@L["Filter"]</button>
+        </div>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>@L["Vehicle"]</th>
+                <th>@L["Category"]</th>
+                <th>@L["HomeStation"]</th>
+                <th>@L["Status"]</th>
+                <th>@L["Updated"]</th>
+                <th class="text-end">@L["Actions"]</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var v in Model.Page.Items)
+        {
+            <tr>
+                <td><strong>@v.LicensePlate</strong></td>
+                <td>@(v.Category?.Name ?? "—") <span class="small text-muted">@(v.Category?.RatePerMinVnd.ToString("N0") ?? "0") ₫/min</span></td>
+                <td>@(v.HomeStation?.Name ?? "—")</td>
+                <td><span class="sr-badge @GetStatusClass(v.Status)">@v.Status</span></td>
+                <td class="small text-muted">@v.UpdatedAt.ToLocalTime():g</td>
+                <td class="text-end">
+                    <a asp-action="Details" asp-route-id="@v.Id" class="btn btn-link btn-sm">@L["Details"]</a>
+                    <a asp-action="Edit" asp-route-id="@v.Id" class="btn btn-outline-secondary btn-sm">@L["Edit"]</a>
+                    <a asp-action="Decommission" asp-route-id="@v.Id" class="btn btn-outline-danger btn-sm">@L["Decommission"]</a>
+                </td>
+            </tr>
+        }
+        @if (!Model.Page.Items.Any())
+        {
+            <tr>
+                <td colspan="6" class="p-0">
+                    <partial name="_EmptyState" model='("bi-search", "No results found", "No vehicles match your filter.")' />
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@if (Model.Page.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int p = 1; p <= Model.Page.TotalPages; p++)
+            {
+                <li class="page-item @(p == Model.Page.Page ? "active" : "")">
+                    <a class="page-link" href="?page=@p&status=@Model.Status&stationId=@Model.StationId&search=@Model.Search">@p</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

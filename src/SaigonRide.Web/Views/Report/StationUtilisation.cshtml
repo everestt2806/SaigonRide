@@ -1,0 +1,60 @@
+@model List<StationUtilisationRow>
+@{ ViewData["Title"] = "Station Utilisation (RPT-02)"; }
+
+<h1 class="h3 mb-3">Station Utilisation Report</h1>
+<p class="text-muted small">Auto-refreshes every 30 seconds. Stations under 20% occupancy trigger the rebalancing discount.</p>
+
+<div class="row g-3" data-station-utilisation-feed="@Url.Action("StationUtilisationData")">
+    <div class="col-12 col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="utilisationChart" height="220"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5">
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-sm mb-0">
+                    <thead class="table-light"><tr><th>Station</th><th class="text-end">Current</th><th class="text-end">Capacity</th><th class="text-end">%</th><th>Status</th></tr></thead>
+                    <tbody>
+                        @foreach (var row in Model)
+                        {
+                            <tr data-station="@row.StationId">
+                                <td>@row.StationName</td>
+                                <td class="text-end" data-current>@row.CurrentCount</td>
+                                <td class="text-end">@row.Capacity</td>
+                                <td class="text-end" data-occupancy>@row.OccupancyPct%</td>
+                                <td>
+                                    @{
+                                        var cls = row.Status == StationStatus.LowInventory ? "bg-warning text-dark" : row.Status == StationStatus.Full ? "bg-danger text-white" : "bg-success text-white";
+                                    }
+                                    <span class="badge @cls">@row.Status</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const labels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Select(r => r.StationName)));
+        const occupancy = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Select(r => (double)r.OccupancyPct)));
+        const remaining = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Select(r => Math.Max(0, 100 - (double)r.OccupancyPct))));
+        new Chart(document.getElementById('utilisationChart'), {
+            type: 'doughnut',
+            data: {
+                labels,
+                datasets: [{
+                    data: occupancy,
+                    backgroundColor: ['#2D5BFF','#FFB627','#1FA971','#0EA5E9','#D63838','#6610f2','#fd7e14']
+                }]
+            },
+            options: { plugins: { legend: { position: 'bottom' } } }
+        });
+    </script>
+}

@@ -1,0 +1,33 @@
+@model Vehicle
+@{ 
+    ViewData["Title"] = $"Vehicle {Model.LicensePlate}"; 
+    string GetStatusClass(VehicleStatus status) => status switch {
+        VehicleStatus.Available => "sr-badge-available",
+        VehicleStatus.InTransit => "sr-badge-in-transit",
+        VehicleStatus.Maintenance => "sr-badge-maintenance",
+        _ => "sr-badge-decommissioned"
+    };
+}
+
+<h1 class="h4 mb-3">Vehicle @Model.LicensePlate</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">@(Model.Category?.Name ?? "—") <span class="text-muted">(@(Model.Category?.RatePerMinVnd.ToString("N0") ?? "0") ₫/min)</span></dd>
+    <dt class="col-sm-3">Home Station</dt>
+    <dd class="col-sm-9">@(Model.HomeStation?.Name ?? "—")</dd>
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9"><span class="sr-badge @GetStatusClass(Model.Status)">@Model.Status</span></dd>
+    <dt class="col-sm-3">Created</dt>
+    <dd class="col-sm-9">@Model.CreatedAt.ToLocalTime():g</dd>
+    <dt class="col-sm-3">Updated</dt>
+    <dd class="col-sm-9">@Model.UpdatedAt.ToLocalTime():g</dd>
+    @if (!string.IsNullOrEmpty(Model.DecommissionReason))
+    {
+        <dt class="col-sm-3">Decommission reason</dt>
+        <dd class="col-sm-9">@Model.DecommissionReason</dd>
+    }
+</dl>
+
+<a asp-action="Index" class="btn btn-outline-secondary">Back</a>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>

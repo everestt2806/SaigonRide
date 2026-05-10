@@ -1,0 +1,21 @@
+@model VehicleCategoryViewModel
+
+<form method="post" novalidate class="card card-body">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none-if-empty"></div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger small"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="RatePerMinVnd" class="form-label"></label>
+        <input asp-for="RatePerMinVnd" class="form-control" type="number" step="50" />
+        <span asp-validation-for="RatePerMinVnd" class="text-danger small"></span>
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+</form>

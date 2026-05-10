@@ -1,0 +1,383 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</h2>
+        <p class="text-muted mb-0">Real-time system monitoring & analytics</p>
+    </div>
+    <div>
+        <button class="btn btn-outline-primary btn-sm" id="btnRefresh" title="Refresh data">
+            <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+        <span class="badge bg-success ms-2" id="liveIndicator">
+            <i class="bi bi-circle-fill me-1" style="font-size:0.5rem"></i>Live
+        </span>
+    </div>
+</div>
+
+<!-- KPI Summary Cards -->
+<div class="row g-3 mb-4" id="kpiCards">
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted small mb-1">Today's Revenue</p>
+                        <h4 class="mb-0" id="kpiTodayRevenue">--</h4>
+                    </div>
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                        <i class="bi bi-currency-dollar text-primary fs-4"></i>
+                    </div>
+                </div>
+                <small class="text-muted"><span id="kpiTodayTxns">0</span> transactions today</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted small mb-1">Active Rentals</p>
+                        <h4 class="mb-0" id="kpiActiveRentals">--</h4>
+                    </div>
+                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                        <i class="bi bi-bicycle text-success fs-4"></i>
+                    </div>
+                </div>
+                <small class="text-muted"><span id="kpiVehiclesRented">0</span> vehicles in transit</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted small mb-1">Station Occupancy</p>
+                        <h4 class="mb-0" id="kpiOccupancy">--</h4>
+                    </div>
+                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                        <i class="bi bi-geo-alt text-warning fs-4"></i>
+                    </div>
+                </div>
+                <small class="text-muted"><span id="kpiStations">0</span> active stations</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted small mb-1">Total Users</p>
+                        <h4 class="mb-0" id="kpiTotalUsers">--</h4>
+                    </div>
+                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                        <i class="bi bi-people text-info fs-4"></i>
+                    </div>
+                </div>
+                <small class="text-muted"><span id="kpiTotalVehicles">0</span> total vehicles</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row g-3 mb-4">
+    <!-- Revenue Line Chart -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="bi bi-graph-up me-2"></i>Revenue Trend (30 Days)</h6>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary active" data-days="7">7D</button>
+                    <button class="btn btn-outline-secondary" data-days="30">30D</button>
+                    <button class="btn btn-outline-secondary" data-days="90">90D</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="revenueChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Payment Method Pie Chart -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0">
+                <h6 class="mb-0"><i class="bi bi-pie-chart me-2"></i>Payment Methods</h6>
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <canvas id="paymentChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vehicle Status & Activity Feed -->
+<div class="row g-3 mb-4">
+    <!-- Vehicle Status Bar Chart -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0">
+                <h6 class="mb-0"><i class="bi bi-bar-chart me-2"></i>Fleet Status</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="fleetChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Recent Activity Feed -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0">
+                <h6 class="mb-0"><i class="bi bi-clock-history me-2"></i>Recent Activity</h6>
+            </div>
+            <div class="card-body p-0" style="max-height:300px;overflow-y:auto">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Action</th>
+                            <th>Entity</th>
+                            <th>User</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityTable">
+                        <tr><td colspan="4" class="text-center text-muted py-4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Summary Table -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-0">
+        <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>System Overview</h6>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-2">
+                <div class="border-end">
+                    <h5 id="sumTotalTxns">--</h5>
+                    <small class="text-muted">Total Transactions</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="border-end">
+                    <h5 id="sumTotalRevenue">--</h5>
+                    <small class="text-muted">Total Revenue</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="border-end">
+                    <h5 id="sumVehiclesAvail">--</h5>
+                    <small class="text-muted">Available Vehicles</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="border-end">
+                    <h5 id="sumVehiclesRented">--</h5>
+                    <small class="text-muted">In Transit</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="border-end">
+                    <h5 id="sumActiveRentals">--</h5>
+                    <small class="text-muted">Active Rentals</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h5 id="sumStations">--</h5>
+                <small class="text-muted">Active Stations</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(function () {
+    const fmt = (n) => new Intl.NumberFormat('vi-VN').format(n);
+    const fmtCurrency = (n) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(n);
+
+    let revenueChart, paymentChart, fleetChart;
+
+    // ── Load KPI Summary ──
+    async function loadSummary() {
+        const res = await fetch('@Url.Action("Summary")');
+        const d = await res.json();
+
+        document.getElementById('kpiTodayRevenue').textContent = fmtCurrency(d.todayRevenue);
+        document.getElementById('kpiTodayTxns').textContent = d.todayTransactions;
+        document.getElementById('kpiActiveRentals').textContent = d.activeRentals;
+        document.getElementById('kpiVehiclesRented').textContent = d.vehiclesRented;
+        document.getElementById('kpiOccupancy').textContent = d.stationOccupancyAvg + '%';
+        document.getElementById('kpiStations').textContent = d.totalStations;
+        document.getElementById('kpiTotalUsers').textContent = d.totalUsers;
+        document.getElementById('kpiTotalVehicles').textContent = d.totalVehicles;
+
+        document.getElementById('sumTotalTxns').textContent = fmt(d.totalTransactions);
+        document.getElementById('sumTotalRevenue').textContent = fmtCurrency(d.totalRevenue);
+        document.getElementById('sumVehiclesAvail').textContent = d.vehiclesAvailable;
+        document.getElementById('sumVehiclesRented').textContent = d.vehiclesRented;
+        document.getElementById('sumActiveRentals').textContent = d.activeRentals;
+        document.getElementById('sumStations').textContent = d.totalStations;
+
+        // Fleet status chart
+        renderFleetChart(d.vehiclesAvailable, d.vehiclesRented, d.totalVehicles - d.vehiclesAvailable - d.vehiclesRented);
+    }
+
+    // ── Revenue Line Chart ──
+    async function loadRevenue(days) {
+        const res = await fetch('@Url.Action("RevenueChart")?days=' + days);
+        const data = await res.json();
+        const labels = data.map(p => p.date);
+        const values = data.map(p => p.revenue);
+        const trips = data.map(p => p.tripCount);
+
+        if (revenueChart) revenueChart.destroy();
+        revenueChart = new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: 'Revenue (VND)',
+                        data: values,
+                        borderColor: '#0d6efd',
+                        backgroundColor: 'rgba(13,110,253,0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Trip Count',
+                        data: trips,
+                        borderColor: '#198754',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        tension: 0.3,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    y: { type: 'linear', position: 'left', ticks: { callback: v => fmt(v) } },
+                    y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false } }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.datasetIndex === 0 ? fmtCurrency(ctx.raw) : fmt(ctx.raw)) }
+                    }
+                }
+            }
+        });
+    }
+
+    // ── Payment Method Pie Chart ──
+    async function loadPaymentBreakdown() {
+        const res = await fetch('@Url.Action("PaymentBreakdown")');
+        const data = await res.json();
+        const labels = data.map(p => p.method);
+        const values = data.map(p => p.total);
+        const colors = ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#6f42c1', '#0dcaf0'];
+
+        if (paymentChart) paymentChart.destroy();
+        paymentChart = new Chart(document.getElementById('paymentChart'), {
+            type: 'doughnut',
+            data: {
+                labels,
+                datasets: [{ data: values, backgroundColor: colors.slice(0, labels.length) }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: { label: ctx => ctx.label + ': ' + fmtCurrency(ctx.raw) }
+                    }
+                }
+            }
+        });
+    }
+
+    // ── Fleet Status Bar Chart ──
+    function renderFleetChart(available, inTransit, other) {
+        if (fleetChart) fleetChart.destroy();
+        fleetChart = new Chart(document.getElementById('fleetChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Available', 'In Transit', 'Maintenance / Other'],
+                datasets: [{
+                    data: [available, inTransit, other],
+                    backgroundColor: ['#198754', '#0d6efd', '#ffc107']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+    }
+
+    // ── Activity Feed ──
+    async function loadActivity() {
+        const res = await fetch('@Url.Action("Activity")?count=15');
+        const data = await res.json();
+        const tbody = document.getElementById('activityTable');
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-4">No recent activity</td></tr>';
+            return;
+        }
+        tbody.innerHTML = data.map(a => `
+            <tr>
+                <td><span class="badge bg-primary">${a.action}</span></td>
+                <td>${a.entityType} ${a.entityId ? '#' + a.entityId : ''}</td>
+                <td class="text-muted small">${a.userEmail || '—'}</td>
+                <td class="text-muted small">${new Date(a.timestamp).toLocaleString()}</td>
+            </tr>
+        `).join('');
+    }
+
+    // ── Day-range buttons ──
+    document.querySelectorAll('[data-days]').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('[data-days]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            loadRevenue(parseInt(this.dataset.days));
+        });
+    });
+
+    // ── Refresh button ──
+    document.getElementById('btnRefresh').addEventListener('click', function () {
+        this.querySelector('i').classList.add('spin');
+        Promise.all([loadSummary(), loadRevenue(30), loadPaymentBreakdown(), loadActivity()])
+            .finally(() => this.querySelector('i').classList.remove('spin'));
+    });
+
+    // ── Initial load ──
+    loadSummary();
+    loadRevenue(30);
+    loadPaymentBreakdown();
+    loadActivity();
+
+    // Auto-refresh every 60 seconds
+    setInterval(() => {
+        loadSummary();
+        loadActivity();
+    }, 60000);
+})();
+</script>
+<style>
+    .spin { animation: spin 1s linear infinite; }
+    @@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+}

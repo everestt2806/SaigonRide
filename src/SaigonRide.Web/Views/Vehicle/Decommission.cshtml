@@ -1,0 +1,30 @@
+@model VehicleDecommissionViewModel
+@{ ViewData["Title"] = $"Decommission {Model.LicensePlate}"; }
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+        <div class="card border-danger">
+            <div class="card-body">
+                <h1 class="h4 text-danger mb-3">Decommission @Model.LicensePlate?</h1>
+                <p class="text-muted">A decommissioned vehicle is hidden from rentals but its history is kept for reporting.</p>
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="LicensePlate" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none-if-empty"></div>
+                    <div class="mb-3">
+                        <label asp-for="Reason" class="form-label"></label>
+                        <textarea asp-for="Reason" rows="3" class="form-control"></textarea>
+                        <span asp-validation-for="Reason" class="text-danger small"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">Decommission</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
