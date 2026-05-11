@@ -1,22 +1,165 @@
-html {
-  font-size: 14px;
+/* SaigonRide — site-specific styles
+   All design tokens (colors, radii, shadows) now live in tokens.css.
+   This file only adds component utilities not covered by tokens.css.          */
+
+/* Hero section ----------------------------------------------------------- */
+.sr-hero {
+    background: linear-gradient(135deg, #EAF0FF 0%, #FFFFFF 60%);
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+.sr-hero::after {
+    content: '';
+    position: absolute;
+    right: -120px;
+    top: -80px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(45, 91, 255, 0.15), transparent 70%);
+    border-radius: 50%;
 }
 
-@media (min-width: 768px) {
-  html {
+/* Feature icon (3-step section) ----------------------------------------- */
+.sr-feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--sr-primary-50);
+    color: var(--sr-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+/* Hero quick-booking card ------------------------------------------------ */
+.sr-hero-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(27, 31, 42, 0.12);
+    padding: 24px;
+}
+
+/* Stat numbers in hero -------------------------------------------------- */
+.sr-stat__num {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--sr-primary);
+    line-height: 1;
+}
+
+/* User avatar ----------------------------------------------------------- */
+.sr-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--sr-primary-50);
+    color: var(--sr-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Legacy badge classes (kept for backward compat with Razor views) ------ */
+/* (All legacy badge classes have been migrated to sr-badge in tokens.css) */
+
+/* Fare card (checkout) -------------------------------------------------- */
+.fare-card {
+    border-left: 6px solid var(--sr-secondary);
+}
+
+/* Discount banner ------------------------------------------------------- */
+.discount-banner {
+    background: linear-gradient(90deg, var(--sr-success-50), #D0F0DD);
+    border: 1px solid var(--sr-success);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+/* Live timer (Active Rental) -------------------------------------------- */
+.live-timer {
+    font-variant-numeric: tabular-nums;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--sr-primary);
+}
+
+/* Report cards ---------------------------------------------------------- */
+.report-card {
+    transition: transform 120ms ease-in-out;
+}
+.report-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Login page decorative background -------------------------------------- */
+.sr-login-bg::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -200px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(45, 91, 255, 0.12), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+.sr-login-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -160px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(255, 182, 39, 0.18), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Form focus override --------------------------------------------------- */
+.form-control:focus {
+    border-color: var(--sr-primary);
+    box-shadow: 0 0 0 0.2rem rgba(45, 91, 255, 0.15);
+}
+
+/* Vehicle icon (admin table) -------------------------------------------- */
+.vehicle-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 16px;
-  }
+}
+.vehicle-icon--bike    { background: var(--sr-primary-50); color: var(--sr-primary); }
+.vehicle-icon--ebike   { background: #FEF3C7; color: #B45309; }
+.vehicle-icon--scooter { background: var(--sr-danger-50); color: var(--sr-danger); }
+
+/* Action button (admin table) ------------------------------------------ */
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--sr-n-200);
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: var(--sr-n-500);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+.action-btn:hover {
+    color: var(--sr-primary);
+    border-color: var(--sr-primary);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+/* Responsive adjustments ------------------------------------------------ */
+@media (max-width: 575.98px) {
+    .live-timer { font-size: 1.5rem; }
 }

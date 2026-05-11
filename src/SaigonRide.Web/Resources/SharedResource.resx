@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+
+  <data name="HomeTitle"><value>SaigonRide</value></data>
+  <data name="HomeSubtitle"><value>Distributed bicycle &amp; e-scooter rentals across Ho Chi Minh City.</value></data>
+  <data name="BrowseStations"><value>Browse stations</value></data>
+  <data name="CreateAccount"><value>Create an account</value></data>
+
+  <data name="NavStations"><value>Stations</value></data>
+  <data name="NavMyRental"><value>My Rental</value></data>
+  <data name="NavRentalHistory"><value>Rental History</value></data>
+  <data name="NavAdmin"><value>Admin</value></data>
+  <data name="NavManageVehicles"><value>Manage Vehicles</value></data>
+  <data name="NavManageCategories"><value>Manage Categories</value></data>
+  <data name="NavRevenueReport"><value>Revenue Report</value></data>
+  <data name="NavStationUtilisation"><value>Station Utilisation</value></data>
+
+  <data name="Login"><value>Login</value></data>
+  <data name="Logout"><value>Logout</value></data>
+  <data name="Register"><value>Register</value></data>
+  <data name="Email"><value>Email</value></data>
+  <data name="Password"><value>Password</value></data>
+  <data name="ConfirmPassword"><value>Confirm password</value></data>
+  <data name="FullName"><value>Full name</value></data>
+  <data name="NationalId"><value>National ID</value></data>
+  <data name="PassportNumber"><value>Passport number</value></data>
+  <data name="Nationality"><value>Nationality</value></data>
+  <data name="PhoneNumber"><value>Phone number</value></data>
+  <data name="RememberMe"><value>Remember me</value></data>
+
+  <data name="ActiveRental"><value>Active Rental</value></data>
+  <data name="LiveDuration"><value>Live duration</value></data>
+  <data name="EstimatedFare"><value>Estimated fare</value></data>
+  <data name="EndRental"><value>End rental</value></data>
+  <data name="CancelRental"><value>Cancel rental (free within 2 min)</value></data>
+  <data name="ReturnStation"><value>Return station</value></data>
+  <data name="PreviewFare"><value>Preview fare</value></data>
+  <data name="DiscountApplied"><value>15% rebalancing discount applied!</value></data>
+  <data name="BaseFare"><value>Base fare</value></data>
+  <data name="Discount"><value>Discount</value></data>
+  <data name="Total"><value>Total</value></data>
+  <data name="ChoosePaymentMethod"><value>Choose payment method</value></data>
+  <data name="ReceiptTitle"><value>Receipt</value></data>
+  <data name="RentalHistory"><value>Rental History</value></data>
+  <data name="VehicleManagement"><value>Manage Vehicle Inventory</value></data>
+  <data name="StationsSubtitle"><value>Tap a station to see available vehicles. Returning to a low-inventory station gets a 15% discount.</value></data>
+  <data name="Vehicle"><value>Vehicle</value></data>
+  <data name="Pickup"><value>Pickup</value></data>
+  <data name="StartedAt"><value>Started at</value></data>
+  <data name="SelectStation"><value>— Select a station —</value></data>
+  <data name="Home"><value>Home</value></data>
+  <data name="View"><value>View</value></data>
+  <data name="Vehicles"><value>vehicles</value></data>
+  <data name="SearchPlate"><value>Search plate</value></data>
+  <data name="Status"><value>Status</value></data>
+  <data name="Station"><value>Station</value></data>
+  <data name="Filter"><value>Filter</value></data>
+  <data name="Category"><value>Category</value></data>
+  <data name="HomeStation"><value>Home Station</value></data>
+  <data name="Updated"><value>Updated</value></data>
+  <data name="Actions"><value>Actions</value></data>
+  <data name="Details"><value>Details</value></data>
+  <data name="Edit"><value>Edit</value></data>
+  <data name="Decommission"><value>Decommission</value></data>
+  <data name="Any"><value>— Any —</value></data>
+  <data name="Profile"><value>Profile</value></data>
+  <data name="FooterDesc"><value>Green mobility solution developed by TDTU.</value></data>
+  <data name="FooterProduct"><value>Product</value></data>
+  <data name="FooterStations"><value>Stations</value></data>
+  <data name="FooterPricing"><value>Pricing</value></data>
+  <data name="FooterPromo"><value>Promotions</value></data>
+  <data name="FooterSupport"><value>Support</value></data>
+  <data name="FooterFAQ"><value>FAQ</value></data>
+  <data name="FooterContact"><value>Contact</value></data>
+  <data name="FooterSafety"><value>Safety</value></data>
+  <data name="FooterSubscribe"><value>Subscribe</value></data>
+  <data name="FooterSubscribeBtn"><value>Subscribe</value></data>
+  <data name="FooterSpamWarning"><value>No spam. Unsubscribe anytime.</value></data>
+  <data name="FooterPrivacy"><value>Privacy</value></data>
+  <data name="FooterTerms"><value>Terms</value></data>
+  <data name="FooterCookies"><value>Cookies</value></data>
+  <data name="HomeHeroDiscount"><value>15% off for rebalancing</value></data>
+  <data name="HomeHeroTitle1"><value>Green mobility around</value></data>
+  <data name="HomeHeroTitle2"><value>Saigon</value></data>
+  <data name="HomeHeroTitle3"><value>from 9,000 ₫</value></data>
+  <data name="HomeStartRide"><value>Start Riding</value></data>
+  <data name="HomeActiveStations"><value>Active Stations</value></data>
+  <data name="HomeVehicles"><value>Vehicles</value></data>
+  <data name="HomeReviews"><value>User Reviews</value></data>
+  <data name="HomeQuickBook"><value>Quick Book</value></data>
+  <data name="HomePickupStation"><value>Pickup Station</value></data>
+  <data name="HomeVehicleType"><value>Vehicle Type</value></data>
+  <data name="HomeFindVehicle"><value>Find available vehicle</value></data>
+  <data name="HomeFreeRegister"><value>Free registration, ID verified later</value></data>
+  <data name="HomeStepTitle"><value>3 steps. Ride in 60s.</value></data>
+  <data name="HomeStepDesc"><value>Simple process, no complicated paperwork.</value></data>
+  <data name="HomeStep1Title"><value>Scan QR at station</value></data>
+  <data name="HomeStep1Desc"><value>Open the app, scan the QR code at the dock. The system links the vehicle to your account.</value></data>
+  <data name="HomeStep2Title"><value>Ride &amp; Go</value></data>
+  <data name="HomeStep2Desc"><value>Track time, distance, and estimated fare on the "Active Rental" screen.</value></data>
+  <data name="HomeStep3Title"><value>Return &amp; Pay</value></data>
+  <data name="HomeStep3Desc"><value>Return to any station with an open slot. Pay via MoMo, VNPay, or Apple Pay/PayPal.</value></data>
+</root>

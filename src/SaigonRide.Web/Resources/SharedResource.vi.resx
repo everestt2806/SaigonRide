@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+
+  <data name="HomeTitle"><value>SaigonRide</value></data>
+  <data name="HomeSubtitle"><value>Hệ thống thuê xe đạp &amp; xe máy điện chia sẻ tại TP. Hồ Chí Minh.</value></data>
+  <data name="BrowseStations"><value>Xem các trạm</value></data>
+  <data name="CreateAccount"><value>Đăng ký tài khoản</value></data>
+
+  <data name="NavStations"><value>Trạm</value></data>
+  <data name="NavMyRental"><value>Chuyến của tôi</value></data>
+  <data name="NavRentalHistory"><value>Lịch sử</value></data>
+  <data name="NavAdmin"><value>Quản trị</value></data>
+  <data name="NavManageVehicles"><value>Quản lý xe</value></data>
+  <data name="NavManageCategories"><value>Loại xe</value></data>
+  <data name="NavRevenueReport"><value>Báo cáo doanh thu</value></data>
+  <data name="NavStationUtilisation"><value>Mức sử dụng trạm</value></data>
+
+  <data name="Login"><value>Đăng nhập</value></data>
+  <data name="Logout"><value>Đăng xuất</value></data>
+  <data name="Register"><value>Đăng ký</value></data>
+  <data name="Email"><value>Email</value></data>
+  <data name="Password"><value>Mật khẩu</value></data>
+  <data name="ConfirmPassword"><value>Xác nhận mật khẩu</value></data>
+  <data name="FullName"><value>Họ và tên</value></data>
+  <data name="NationalId"><value>CMND/CCCD</value></data>
+  <data name="PassportNumber"><value>Số hộ chiếu</value></data>
+  <data name="Nationality"><value>Quốc tịch</value></data>
+  <data name="PhoneNumber"><value>Số điện thoại</value></data>
+  <data name="RememberMe"><value>Ghi nhớ đăng nhập</value></data>
+
+  <data name="ActiveRental"><value>Chuyến đang đi</value></data>
+  <data name="LiveDuration"><value>Thời gian thực tế</value></data>
+  <data name="EstimatedFare"><value>Cước tạm tính</value></data>
+  <data name="EndRental"><value>Kết thúc chuyến</value></data>
+  <data name="CancelRental"><value>Hủy chuyến (miễn phí trong 2 phút)</value></data>
+  <data name="ReturnStation"><value>Trạm trả</value></data>
+  <data name="PreviewFare"><value>Xem cước</value></data>
+  <data name="DiscountApplied"><value>Đã áp dụng giảm 15% cân bằng kho!</value></data>
+  <data name="BaseFare"><value>Cước cơ bản</value></data>
+  <data name="Discount"><value>Giảm giá</value></data>
+  <data name="Total"><value>Tổng cộng</value></data>
+  <data name="ChoosePaymentMethod"><value>Chọn phương thức thanh toán</value></data>
+  <data name="ReceiptTitle"><value>Hóa đơn</value></data>
+  <data name="RentalHistory"><value>Lịch sử chuyến</value></data>
+  <data name="VehicleManagement"><value>Quản lý kho xe</value></data>
+  <data name="StationsSubtitle"><value>Nhấn vào trạm để xem xe khả dụng. Trả xe tại trạm đang thiếu xe sẽ được giảm 15% cước.</value></data>
+  <data name="Vehicle"><value>Phương tiện</value></data>
+  <data name="Pickup"><value>Điểm lấy xe</value></data>
+  <data name="StartedAt"><value>Bắt đầu lúc</value></data>
+  <data name="SelectStation"><value>— Chọn một trạm —</value></data>
+  <data name="Home"><value>Trang chủ</value></data>
+  <data name="View"><value>Xem</value></data>
+  <data name="Vehicles"><value>xe</value></data>
+  <data name="SearchPlate"><value>Tìm biển số</value></data>
+  <data name="Status"><value>Trạng thái</value></data>
+  <data name="Station"><value>Trạm</value></data>
+  <data name="Filter"><value>Lọc</value></data>
+  <data name="Category"><value>Loại xe</value></data>
+  <data name="HomeStation"><value>Trạm gốc</value></data>
+  <data name="Updated"><value>Cập nhật</value></data>
+  <data name="Actions"><value>Thao tác</value></data>
+  <data name="Details"><value>Chi tiết</value></data>
+  <data name="Edit"><value>Sửa</value></data>
+  <data name="Decommission"><value>Thanh lý</value></data>
+  <data name="Any"><value>— Tất cả —</value></data>
+  <data name="Profile"><value>Hồ sơ</value></data>
+  <data name="FooterDesc"><value>Giải pháp di chuyển xanh do TDTU phát triển.</value></data>
+  <data name="FooterProduct"><value>Sản phẩm</value></data>
+  <data name="FooterStations"><value>Trạm xe</value></data>
+  <data name="FooterPricing"><value>Bảng giá</value></data>
+  <data name="FooterPromo"><value>Khuyến mãi</value></data>
+  <data name="FooterSupport"><value>Hỗ trợ</value></data>
+  <data name="FooterFAQ"><value>FAQ</value></data>
+  <data name="FooterContact"><value>Liên hệ</value></data>
+  <data name="FooterSafety"><value>An toàn</value></data>
+  <data name="FooterSubscribe"><value>Đăng ký nhận tin</value></data>
+  <data name="FooterSubscribeBtn"><value>Đăng ký</value></data>
+  <data name="FooterSpamWarning"><value>Không spam. Hủy bất cứ lúc nào.</value></data>
+  <data name="FooterPrivacy"><value>Bảo mật</value></data>
+  <data name="FooterTerms"><value>Điều khoản</value></data>
+  <data name="FooterCookies"><value>Cookies</value></data>
+  <data name="HomeHeroDiscount"><value>Giảm 15% cho trạm cần tái cân bằng</value></data>
+  <data name="HomeHeroTitle1"><value>Di chuyển xanh quanh</value></data>
+  <data name="HomeHeroTitle2"><value>Sài Gòn</value></data>
+  <data name="HomeHeroTitle3"><value>chỉ với 9.000 ₫</value></data>
+  <data name="HomeStartRide"><value>Bắt đầu thuê xe</value></data>
+  <data name="HomeActiveStations"><value>Trạm hoạt động</value></data>
+  <data name="HomeVehicles"><value>Phương tiện</value></data>
+  <data name="HomeReviews"><value>Đánh giá người dùng</value></data>
+  <data name="HomeQuickBook"><value>Đặt xe nhanh</value></data>
+  <data name="HomePickupStation"><value>Trạm lấy xe</value></data>
+  <data name="HomeVehicleType"><value>Loại xe</value></data>
+  <data name="HomeFindVehicle"><value>Tìm xe khả dụng</value></data>
+  <data name="HomeFreeRegister"><value>Đăng ký miễn phí, xác thực CCCD/passport sau</value></data>
+  <data name="HomeStepTitle"><value>3 bước. Lên xe trong 60 giây.</value></data>
+  <data name="HomeStepDesc"><value>Quy trình đơn giản, không giấy tờ phức tạp.</value></data>
+  <data name="HomeStep1Title"><value>Quét QR ở trạm</value></data>
+  <data name="HomeStep1Desc"><value>Mở app, quét mã QR ngay tại trụ xe. Hệ thống tự khóa xe vào tài khoản của bạn.</value></data>
+  <data name="HomeStep2Title"><value>Đạp &amp; đi</value></data>
+  <data name="HomeStep2Desc"><value>Theo dõi thời gian, quãng đường và cước phí ước tính trên màn hình "Active Rental".</value></data>
+  <data name="HomeStep3Title"><value>Trả xe &amp; thanh toán</value></data>
+  <data name="HomeStep3Desc"><value>Trả về bất kỳ trạm nào còn slot. Thanh toán qua MoMo, VNPay hoặc Apple Pay / PayPal.</value></data>
+</root>

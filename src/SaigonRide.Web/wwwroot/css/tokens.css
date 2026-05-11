@@ -1,0 +1,193 @@
+/* SaigonRide Design Tokens — synced with Figma_Design_Spec.md §8.2
+   This file is the canonical reference. Each screen.html inlines an identical
+   :root + base body styles so it can be imported standalone via html.to.design. */
+
+:root {
+  /* Brand */
+  --sr-primary:        #2D5BFF;   /* SaigonRide Sky-blue */
+  --sr-primary-600:    #1E45D6;
+  --sr-primary-50:     #EAF0FF;
+  --sr-secondary:      #FFB627;   /* Saigon-saffron */
+  --sr-secondary-600:  #E69A0A;
+
+  /* Semantic */
+  --sr-success:        #1FA971;   /* Discount banner */
+  --sr-success-50:     #E6F7EF;
+  --sr-danger:         #D63838;
+  --sr-danger-50:      #FCE8E8;
+  --sr-warning:        #F59E0B;
+  --sr-info:           #0EA5E9;
+
+  /* Neutrals */
+  --sr-n-100:          #F5F8FF;
+  --sr-n-200:          #E5EAF5;
+  --sr-n-300:          #CBD3E1;
+  --sr-n-500:          #6B7280;
+  --sr-n-700:          #1B1F2A;
+
+  /* Radii */
+  --sr-radius-card:    8px;
+  --sr-radius-modal:   12px;
+  --sr-radius-pill:    999px;
+
+  /* Shadows */
+  --sr-shadow-sm: 0 1px 2px rgba(27, 31, 42, 0.06);
+  --sr-shadow-md: 0 4px 12px rgba(27, 31, 42, 0.08);
+  --sr-shadow-lg: 0 12px 32px rgba(27, 31, 42, 0.12);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--sr-n-100);
+  color: var(--sr-n-700);
+}
+
+h1, h2, h3, h4, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: 'Be Vietnam Pro', 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Branded Bootstrap overrides */
+.btn-primary {
+  --bs-btn-bg: var(--sr-primary);
+  --bs-btn-border-color: var(--sr-primary);
+  --bs-btn-hover-bg: var(--sr-primary-600);
+  --bs-btn-hover-border-color: var(--sr-primary-600);
+  --bs-btn-active-bg: var(--sr-primary-600);
+  --bs-btn-active-border-color: var(--sr-primary-600);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--sr-primary);
+  --bs-btn-border-color: var(--sr-primary);
+  --bs-btn-hover-bg: var(--sr-primary);
+  --bs-btn-hover-border-color: var(--sr-primary);
+}
+.btn-secondary {
+  --bs-btn-bg: var(--sr-secondary);
+  --bs-btn-border-color: var(--sr-secondary);
+  --bs-btn-color: #1B1F2A;
+}
+.text-primary { color: var(--sr-primary) !important; }
+.bg-primary { background-color: var(--sr-primary) !important; }
+.bg-primary-50 { background-color: var(--sr-primary-50) !important; }
+.bg-success-50 { background-color: var(--sr-success-50) !important; }
+.bg-danger-50 { background-color: var(--sr-danger-50) !important; }
+
+.card { border-radius: var(--sr-radius-card); border-color: var(--sr-n-200); }
+.modal-content { border-radius: var(--sr-radius-modal); }
+.rounded-pill-sr { border-radius: var(--sr-radius-pill); }
+
+/* Status badges (StatusBadge component) */
+.sr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--sr-radius-pill);
+  line-height: 1.4;
+}
+.sr-badge-available    { background: var(--sr-success-50); color: var(--sr-success); }
+.sr-badge-in-transit   { background: var(--sr-primary-50); color: var(--sr-primary); }
+.sr-badge-maintenance  { background: #FEF3C7;             color: #B45309; }
+.sr-badge-decommissioned { background: var(--sr-n-200);   color: var(--sr-n-500); }
+.sr-badge-low          { background: #FEF3C7;             color: #B45309; }
+.sr-badge-full         { background: var(--sr-danger-50); color: var(--sr-danger); }
+.sr-badge-normal       { background: var(--sr-success-50); color: var(--sr-success); }
+.sr-badge-discount     { background: var(--sr-success);   color: #FFFFFF; }
+
+/* Brand logo (text-only) */
+.sr-logo {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--sr-primary);
+  letter-spacing: -0.02em;
+}
+.sr-logo-mark {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--sr-primary), #5B7CFF);
+  border-radius: 8px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Payment method button */
+.sr-pay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--sr-n-200);
+  border-radius: var(--sr-radius-card);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sr-pay-btn:hover { border-color: var(--sr-primary); transform: translateY(-1px); box-shadow: var(--sr-shadow-md); }
+.sr-pay-btn--momo  { color: #A50064; }
+.sr-pay-btn--vnpay { color: #005BA0; }
+.sr-pay-btn--cash  { color: var(--sr-n-700); }
+.sr-pay-btn--apple { color: #000000; }
+.sr-pay-btn--paypal{ color: #003087; }
+
+/* KPI card */
+.sr-kpi {
+  background: #FFFFFF;
+  border: 1px solid var(--sr-n-200);
+  border-radius: var(--sr-radius-card);
+  padding: 20px;
+  box-shadow: var(--sr-shadow-sm);
+}
+.sr-kpi__label { font-size: 13px; color: var(--sr-n-500); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.sr-kpi__value { font-family: 'Be Vietnam Pro', sans-serif; font-weight: 600; font-size: 28px; color: var(--sr-n-700); line-height: 1.2; }
+.sr-kpi__delta { font-size: 13px; margin-top: 6px; }
+.sr-kpi__delta--up   { color: var(--sr-success); }
+.sr-kpi__delta--down { color: var(--sr-danger); }
+
+/* Quick-action tile */
+.sr-quick {
+  background: #FFFFFF;
+  border: 1px solid var(--sr-n-200);
+  border-radius: var(--sr-radius-card);
+  padding: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--sr-n-700);
+  transition: all 0.15s ease;
+  display: block;
+}
+.sr-quick:hover { border-color: var(--sr-primary); transform: translateY(-2px); box-shadow: var(--sr-shadow-md); color: var(--sr-n-700); }
+.sr-quick__icon { font-size: 32px; color: var(--sr-primary); margin-bottom: 12px; }
+.sr-quick__label { font-weight: 500; }
+
+/* Active rental sticky bar */
+.sr-active-bar {
+  position: sticky; bottom: 0; z-index: 10;
+  background: #FFFFFF; border-top: 1px solid var(--sr-n-200);
+  box-shadow: 0 -8px 24px rgba(27, 31, 42, 0.08);
+  padding: 16px 24px;
+}
+
+/* Map placeholder (Screen 5) */
+.sr-map {
+  background: linear-gradient(135deg, #DDE7FF, #C0D2FF);
+  border-radius: var(--sr-radius-card);
+  position: relative;
+  overflow: hidden;
+}
+.sr-map::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(45,91,255,0.4) 0, transparent 8px),
+    radial-gradient(circle at 60% 50%, rgba(45,91,255,0.4) 0, transparent 8px),
+    radial-gradient(circle at 40% 70%, rgba(45,91,255,0.4) 0, transparent 8px),
+    radial-gradient(circle at 80% 35%, rgba(45,91,255,0.4) 0, transparent 8px),
+    linear-gradient(0deg,  transparent calc(50% - 0.5px), rgba(255,255,255,0.5) 50%, transparent calc(50% + 0.5px));
+}

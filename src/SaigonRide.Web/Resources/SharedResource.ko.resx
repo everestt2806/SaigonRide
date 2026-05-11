@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+
+  <data name="HomeTitle"><value>SaigonRide</value></data>
+  <data name="HomeSubtitle"><value>호치민시의 분산형 자전거 및 전기 스쿠터 대여 서비스입니다.</value></data>
+  <data name="BrowseStations"><value>스테이션 보기</value></data>
+  <data name="CreateAccount"><value>계정 만들기</value></data>
+
+  <data name="NavStations"><value>스테이션</value></data>
+  <data name="NavMyRental"><value>내 대여</value></data>
+  <data name="NavRentalHistory"><value>대여 내역</value></data>
+  <data name="NavAdmin"><value>관리자</value></data>
+  <data name="NavManageVehicles"><value>차량 관리</value></data>
+  <data name="NavManageCategories"><value>카테고리 관리</value></data>
+  <data name="NavRevenueReport"><value>수익 보고서</value></data>
+  <data name="NavStationUtilisation"><value>스테이션 활용도</value></data>
+
+  <data name="Login"><value>로그인</value></data>
+  <data name="Logout"><value>로그아웃</value></data>
+  <data name="Register"><value>가입하기</value></data>
+  <data name="Email"><value>이메일</value></data>
+  <data name="Password"><value>비밀번호</value></data>
+  <data name="ConfirmPassword"><value>비밀번호 확인</value></data>
+  <data name="FullName"><value>성명</value></data>
+  <data name="NationalId"><value>주민등록번호</value></data>
+  <data name="PassportNumber"><value>여권 번호</value></data>
+  <data name="Nationality"><value>국적</value></data>
+  <data name="PhoneNumber"><value>전화번호</value></data>
+  <data name="RememberMe"><value>로그인 유지</value></data>
+
+  <data name="ActiveRental"><value>현재 대여 중</value></data>
+  <data name="LiveDuration"><value>실시간 이용 시간</value></data>
+  <data name="EstimatedFare"><value>예상 요금</value></data>
+  <data name="EndRental"><value>대여 종료</value></data>
+  <data name="CancelRental"><value>대여 취소 (2분 내 무료)</value></data>
+  <data name="ReturnStation"><value>반납 스테이션</value></data>
+  <data name="PreviewFare"><value>요금 미리보기</value></data>
+  <data name="DiscountApplied"><value>재배치 15% 할인 적용!</value></data>
+  <data name="BaseFare"><value>기본 요금</value></data>
+  <data name="Discount"><value>할인</value></data>
+  <data name="Total"><value>총액</value></data>
+  <data name="ChoosePaymentMethod"><value>결제 수단 선택</value></data>
+  <data name="ReceiptTitle"><value>영수증</value></data>
+  <data name="RentalHistory"><value>대여 내역</value></data>
+  <data name="VehicleManagement"><value>차량 재고 관리</value></data>
+  <data name="StationsSubtitle"><value>스테이션을 탭하여 이용 가능한 차량을 확인하세요. 재고가 적은 스테이션에 반납하면 15% 할인을 받습니다.</value></data>
+  <data name="Vehicle"><value>차량</value></data>
+  <data name="Pickup"><value>픽업 장소</value></data>
+  <data name="StartedAt"><value>시작 시간</value></data>
+  <data name="SelectStation"><value>— 스테이션 선택 —</value></data>
+  <data name="Home"><value>홈</value></data>
+  <data name="View"><value>보기</value></data>
+  <data name="Vehicles"><value>대</value></data>
+  <data name="SearchPlate"><value>번호판 검색</value></data>
+  <data name="Status"><value>상태</value></data>
+  <data name="Station"><value>스테이션</value></data>
+  <data name="Filter"><value>필터</value></data>
+  <data name="Category"><value>카테고리</value></data>
+  <data name="HomeStation"><value>홈 스테이션</value></data>
+  <data name="Updated"><value>업데이트됨</value></data>
+  <data name="Actions"><value>작업</value></data>
+  <data name="Details"><value>상세</value></data>
+  <data name="Edit"><value>편집</value></data>
+  <data name="Decommission"><value>폐기</value></data>
+  <data name="Any"><value>— 전체 —</value></data>
+  <data name="Profile"><value>프로필</value></data>
+  <data name="FooterDesc"><value>TDTU에서 개발한 친환경 모빌리티 솔루션.</value></data>
+  <data name="FooterProduct"><value>제품</value></data>
+  <data name="FooterStations"><value>스테이션</value></data>
+  <data name="FooterPricing"><value>요금제</value></data>
+  <data name="FooterPromo"><value>프로모션</value></data>
+  <data name="FooterSupport"><value>지원</value></data>
+  <data name="FooterFAQ"><value>자주 묻는 질문</value></data>
+  <data name="FooterContact"><value>연락처</value></data>
+  <data name="FooterSafety"><value>안전</value></data>
+  <data name="FooterSubscribe"><value>소식 받기</value></data>
+  <data name="FooterSubscribeBtn"><value>구독</value></data>
+  <data name="FooterSpamWarning"><value>스팸 없음. 언제든 구독 취소 가능.</value></data>
+  <data name="FooterPrivacy"><value>개인정보처리방침</value></data>
+  <data name="FooterTerms"><value>이용약관</value></data>
+  <data name="FooterCookies"><value>쿠키</value></data>
+  <data name="HomeHeroDiscount"><value>재배치 필요 스테이션 15% 할인</value></data>
+  <data name="HomeHeroTitle1"><value>사이공 주변의</value></data>
+  <data name="HomeHeroTitle2"><value>친환경 이동</value></data>
+  <data name="HomeHeroTitle3"><value>9,000 ₫ 부터</value></data>
+  <data name="HomeStartRide"><value>대여 시작하기</value></data>
+  <data name="HomeActiveStations"><value>운영 중인 스테이션</value></data>
+  <data name="HomeVehicles"><value>차량</value></data>
+  <data name="HomeReviews"><value>사용자 리뷰</value></data>
+  <data name="HomeQuickBook"><value>빠른 예약</value></data>
+  <data name="HomePickupStation"><value>픽업 장소</value></data>
+  <data name="HomeVehicleType"><value>차량 종류</value></data>
+  <data name="HomeFindVehicle"><value>차량 찾기</value></data>
+  <data name="HomeFreeRegister"><value>무료 가입, 신분증 인증은 나중에</value></data>
+  <data name="HomeStepTitle"><value>3단계. 60초 만에 탑승.</value></data>
+  <data name="HomeStepDesc"><value>복잡한 서류 없이 간단한 절차.</value></data>
+  <data name="HomeStep1Title"><value>QR 스캔</value></data>
+  <data name="HomeStep1Desc"><value>앱을 열고 스테이션에서 QR을 스캔하세요.</value></data>
+  <data name="HomeStep2Title"><value>탑승 &amp; 이동</value></data>
+  <data name="HomeStep2Desc"><value>앱에서 실시간으로 시간과 요금을 확인하세요.</value></data>
+  <data name="HomeStep3Title"><value>반납 &amp; 결제</value></data>
+  <data name="HomeStep3Desc"><value>빈 슬롯이 있는 어느 스테이션에나 반납하세요.</value></data>
+</root>
