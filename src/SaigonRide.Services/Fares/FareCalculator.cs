@@ -16,6 +16,9 @@ public class FareCalculator : IFareCalculator
     /// <summary>Default discount rate (FR-08).</summary>
     public const decimal DefaultDiscountRate = 0.15m;
 
+    /// <summary>Minimum fare floor (1 000 VND) so VNPay sandbox always gets a valid amount.</summary>
+    public const decimal MinimumFare = 1000m;
+
     private readonly decimal _thresholdPct;
     private readonly decimal _discountRate;
 
@@ -47,7 +50,7 @@ public class FareCalculator : IFareCalculator
         var discount = discountApplies
             ? decimal.Round(baseFare * _discountRate, 0, MidpointRounding.AwayFromZero)
             : 0m;
-        var total = baseFare - discount;
+        var total = Math.Max(baseFare - discount, MinimumFare);
 
         return new FareBreakdown(
             DurationMinutes: duration,

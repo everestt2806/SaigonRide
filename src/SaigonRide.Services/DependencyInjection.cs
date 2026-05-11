@@ -6,6 +6,7 @@ using SaigonRide.Services.Inventory;
 using SaigonRide.Services.Payment;
 using SaigonRide.Services.Payment.Gateways;
 using SaigonRide.Services.Rentals;
+using SaigonRide.Services.Dashboard;
 using SaigonRide.Services.Reporting;
 
 namespace SaigonRide.Services;
@@ -32,6 +33,8 @@ public static class DependencyInjection
         services.AddScoped<IPaymentGateway, ApplePayGateway>();
         services.AddScoped<IPaymentGateway, CashGateway>();
         services.AddScoped<IPaymentService, PaymentService>();
+
+        services.AddScoped<IDashboardService, DashboardService>();
 
         return services;
     }
